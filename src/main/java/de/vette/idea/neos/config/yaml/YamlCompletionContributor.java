@@ -19,17 +19,19 @@
 package de.vette.idea.neos.config.yaml;
 
 import com.intellij.codeInsight.completion.*;
+import com.intellij.openapi.project.Project;
+import com.intellij.openapi.project.ProjectManager;
 import com.intellij.patterns.PlatformPatterns;
 import com.intellij.patterns.PsiElementPattern;
 import com.intellij.psi.PsiElement;
+import com.intellij.util.indexing.FileBasedIndex;
+import de.vette.idea.neos.indexes.InspectorEditorsFileIndex;
 import de.vette.idea.neos.util.psi.FilenamePrefixPatternCondition;
 import de.vette.idea.neos.util.psi.ParentKeysPatternCondition;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.yaml.YAMLLanguage;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class YamlCompletionContributor extends CompletionContributor {
 
@@ -98,6 +100,7 @@ public class YamlCompletionContributor extends CompletionContributor {
         put("reloadIfChanged", null);
         put("reloadPageIfChanged", null);
         put("inlineEditable", null);
+        put("inline", null);
         put("aloha", null);
         put("inspector", null);
     }});
@@ -112,6 +115,18 @@ public class YamlCompletionContributor extends CompletionContributor {
         put("inspector", null);
     }});
 
+    private static final Map<String, String> UI_PROPERTIES_UI_INLINE_KEYS = Collections.unmodifiableMap(new HashMap<String, String>() {{
+        put("editor", null);
+        put("editorOptions", null);
+    }});
+
+    private static final Map<String, String> UI_PROPERTIES_UI_INLINE_EDITOROPTIONS_KEYS = Collections.unmodifiableMap(new HashMap<String, String>() {{
+        put("placeholder", null);
+        put("autoparagraph", null);
+        put("linking", null);
+        put("formatting", null);
+    }});
+
     private static final Map<String, String> CHILDNODES_KEYS = Collections.unmodifiableMap(new HashMap<String, String>() {{
         put("type", null);
         put("constraints", null);
@@ -121,6 +136,19 @@ public class YamlCompletionContributor extends CompletionContributor {
     private static final Map<String, String> CHILDNODES_CONSTRAINTS_KEYS = Collections.unmodifiableMap(new HashMap<String, String>() {{
         put("nodeTypes", null);
     }});
+
+    @NotNull
+    private String[] getInspectorEditors() {
+        Project project = ProjectManager.getInstance().getOpenProjects()[0];
+        String[] configuredInspectorEditors;
+        if (project != null) {
+            Collection<String> indexKeys = FileBasedIndex.getInstance().getAllKeys(InspectorEditorsFileIndex.KEY, project);
+            configuredInspectorEditors = indexKeys.toArray(new String[0]);
+        } else {
+            configuredInspectorEditors = new String[]{};
+        }
+        return configuredInspectorEditors;
+    }
 
     public YamlCompletionContributor() {
         extend(CompletionType.BASIC,
@@ -186,6 +214,27 @@ public class YamlCompletionContributor extends CompletionContributor {
         extend(CompletionType.BASIC,
                 uiPropertiesInspectorElementPattern,
                 new YamlCompletionProvider(UI_PROPERTIES_UI_INSPECTOR_KEYS));
+
+        // properties.*.ui.inspector.editor
+        PsiElementPattern.Capture<PsiElement> uiPropertiesInspectorEditorElementPattern =
+                getNodeTypeElementMatcher("editor", "inspector", "ui", "*", "properties");
+        extend(CompletionType.BASIC,
+                uiPropertiesInspectorEditorElementPattern,
+                new YamlCompletionProvider(getInspectorEditors()));
+
+        // properties.*.ui.inline
+        PsiElementPattern.Capture<PsiElement> uiPropertiesInlineElementPattern =
+                getNodeTypeElementMatcher("inline", "ui", "*", "properties");
+        extend(CompletionType.BASIC,
+                uiPropertiesInlineElementPattern,
+                new YamlCompletionProvider(UI_PROPERTIES_UI_INLINE_KEYS));
+
+        // properties.*.ui.inline.editorOptions
+        PsiElementPattern.Capture<PsiElement> uiPropertiesInlineEditorOptionsElementPattern =
+                getNodeTypeElementMatcher("editorOptions", "inline", "ui", "*", "properties");
+        extend(CompletionType.BASIC,
+                uiPropertiesInlineEditorOptionsElementPattern,
+                new YamlCompletionProvider(UI_PROPERTIES_UI_INLINE_EDITOROPTIONS_KEYS));
 
         // label
         PsiElementPattern.Capture<PsiElement> labelElementPattern =

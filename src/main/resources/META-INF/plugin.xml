@@ -57,6 +57,7 @@
     <codeStyleSettingsProvider implementation="de.vette.idea.neos.lang.fusion.formatter.FusionCodeStyleSettingsProvider" />
     <langCodeStyleSettingsProvider implementation="de.vette.idea.neos.lang.fusion.formatter.FusionLanguageCodeStyleSettingsProvider"/>
     <fileBasedIndex implementation="de.vette.idea.neos.indexes.DefaultContextFileIndex"/>
+    <fileBasedIndex implementation="de.vette.idea.neos.indexes.InspectorEditorsFileIndex"/>
     <fileBasedIndex implementation="de.vette.idea.neos.indexes.NodeTypesYamlFileIndex"/>
     <completion.contributor language="yaml" implementationClass="de.vette.idea.neos.config.yaml.YamlCompletionContributor"/>
     <completion.contributor language="NeosFusion" implementationClass="de.vette.idea.neos.lang.fusion.completion.FusionCompletionContributor"/>
