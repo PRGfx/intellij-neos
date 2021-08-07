@@ -106,6 +106,9 @@
     <gotoSymbolContributor implementation="de.vette.idea.neos.search.NodeTypeContributor"/>
     <gotoSymbolContributor implementation="de.vette.idea.neos.search.FusionPrototypeDeclarationContributor"/>
 
+    <!-- Node-Types -->
+    <completion.contributor language="yaml" implementationClass="de.vette.idea.neos.lang.yaml.completion.NodeTypeCompletionContributor"/>
+
     <!-- Line Marker Providers -->
     <codeInsight.lineMarkerProvider language="NeosFusion" implementationClass="de.vette.idea.neos.lang.fusion.annotators.NodeTypeLineMarkerProvider"/>
     <codeInsight.lineMarkerProvider language="yaml" implementationClass="de.vette.idea.neos.lang.yaml.annotators.PrototypeLineMarkerProvider"/>

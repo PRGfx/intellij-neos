@@ -60,4 +60,35 @@ public class YamlElementPatternHelper {
                 )
         ));
     }
+
+    /**
+     * auto complete on
+     *
+     * {arrayName}: [refer|]
+     *
+     * {arrayName}:
+     *   - refer|
+     *
+     * @param arrayName Name of the array key we want to be an item of
+     */
+    public static ElementPattern<PsiElement> getInArray(String arrayName) {
+        return PlatformPatterns.or(
+            PlatformPatterns.psiElement().withParent(
+                PlatformPatterns.psiElement(YAMLScalar.class).withParent(
+                    PlatformPatterns.psiElement(YAMLSequenceItem.class).withParent(
+                        PlatformPatterns.psiElement(YAMLSequence.class).withParent(
+                            PlatformPatterns.psiElement(YAMLKeyValue.class).withName(arrayName)
+                        )
+                    )
+                )
+            ),
+            PlatformPatterns.psiElement().withParent(
+                PlatformPatterns.psiElement(YAMLSequenceItem.class).withParent(
+                    PlatformPatterns.psiElement(YAMLSequence.class).withParent(
+                        PlatformPatterns.psiElement(YAMLKeyValue.class).withName(arrayName)
+                    )
+                )
+            )
+        );
+    }
 }
