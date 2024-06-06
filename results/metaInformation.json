@@ -1,0 +1,19 @@
+{
+  "total": 217,
+  "tools inspection": {
+    "Code Inspection": 217
+  },
+  "linter": "QDJVMC",
+  "attributes": {
+    "vcs": {
+      "sarifIdea": {
+        "repositoryUri": "https://github.com/PRGfx/intellij-neos.git",
+        "revisionId": "a910c13c1de8c18d28a96e02f6b15511991eec67",
+        "branch": "main"
+      }
+    },
+    "repoUrl": "https://github.com/PRGfx/intellij-neos.git",
+    "deviceId": "200820300000000-ea84-6321-74e0-ce2dad94e14b",
+    "jobUrl": "https://github.com/PRGfx/intellij-neos/actions/runs/9404055616"
+  }
+}
