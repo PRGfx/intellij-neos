@@ -1,7 +1,7 @@
 {
   "sdks": [
     {
-      "name": "17",
+      "name": "21",
       "roots": [
         "jrt://$APPLICATION_HOME_DIR$/jbr!/gluegen.rt",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/java.base",
@@ -39,6 +39,7 @@
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.internal.ed",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.internal.jvmstat",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.internal.le",
+        "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.internal.opt",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.internal.vm.ci",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.javadoc",
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jdk.jcmd",
@@ -63,7 +64,7 @@
         "jrt://$APPLICATION_HOME_DIR$/jbr!/jogl.all"
       ],
       "sdkType": "JavaSDK",
-      "sdkVersion": "java version \"17.0.11\""
+      "sdkVersion": "java version \"21.0.9\""
     }
   ]
 }

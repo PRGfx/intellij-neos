@@ -1,19 +1,21 @@
 {
-  "total": 219,
+  "version": "1.0",
+  "total": 170,
   "tools inspection": {
-    "Code Inspection": 219
+    "Code Inspection": 170
   },
   "linter": "QDJVMC",
   "attributes": {
+    "deviceId": "200820300000000-ea84-6321-74e0-ce2dad94e14b",
+    "jobUrl": "https://github.com/PRGfx/intellij-neos/actions/runs/23730485541",
     "vcs": {
       "sarifIdea": {
         "repositoryUri": "https://github.com/PRGfx/intellij-neos.git",
-        "revisionId": "6c720d8cf994786a78ecd451e5de122a66e70a12",
+        "revisionId": "39affa9e271729b36ed0f68adbe6be3db873493f",
         "branch": "main"
       }
     },
-    "repoUrl": "https://github.com/PRGfx/intellij-neos.git",
-    "deviceId": "200820300000000-ea84-6321-74e0-ce2dad94e14b",
-    "jobUrl": "https://github.com/PRGfx/intellij-neos/actions/runs/10651896770"
-  }
+    "repoUrl": "https://github.com/PRGfx/intellij-neos.git"
+  },
+  "linterVersion": "252.28459"
 }
